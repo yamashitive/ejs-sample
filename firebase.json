@@ -1,15 +1,9 @@
 {
   "hosting": {
     "public": "public",
-    // prettier-ignore
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
     "rewrites": [
       {
-        "source": "/**",
+        "source": "**",
         "function": "sample"
       }
     ]
