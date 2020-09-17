@@ -1,6 +1,5 @@
 const functions = require('firebase-functions');
 const express = require('express');
-const url = require('url');
 const app = express();
 
 const routes = {
@@ -15,17 +14,17 @@ const routes = {
 };
 
 app.set('view engine', 'ejs');
-app.engine('ejs', require('ejs').__express);
 
 app.get('*', function (req, res) {
-  const url_parts = url.parse(req.path);
+  const url_parts = req.path;
+  // res.send(url_parts);
 
-  if (routes[url_parts.pathname] == null) {
+  if (routes[url_parts] == null) {
     res.status(404).send('page not found');
   } else {
-    res.status(200).render('template', {
-      title: routes[url_parts.pathname].title,
-      content: routes[url_parts.pathname].content,
+    res.status(200).render('./template.ejs', {
+      title: routes[url_parts].title,
+      content: routes[url_parts].content,
     });
   }
 });
